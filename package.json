@@ -1,26 +1,33 @@
 {
   "name": "youtubeclone",
   "version": "1.0.0",
-  "description": "",
+  "description": "youtube clone",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node init.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnYKim/youtubeClone.git"
+  },
+  "author": "nana",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnYKim/youtubeClone/issues"
+  },
+  "homepage": "https://github.com/nana-like/youtubeClone#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "helmet": "^3.21.1",
-    "pug": "^2.0.4"
+    "helmet": "^3.21.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/node": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.2"
+    "nodemon": "^2.0.2"
   }
 }
