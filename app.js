@@ -4,9 +4,10 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 
+import routes from "./routes";
+import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
-import globalRouter from "./routers/globalRouter";
 
 const app = express();
 
@@ -18,8 +19,12 @@ app.use(bodyParser.urlencoded({
 app.use(helmet());
 app.use(morgan("short"));
 
-app.get("/", globalRouter);
-app.use("/user", userRouter)
-app.use("/video", videoRouter)
+app.use("/", globalRouter);
+// app.use(routes.users, userRouter)
+// app.use(routes.a, videoRouter)
+app.get('/page', function (req, res) {
+  return res.send(`<h1>${routes.videos}</h1>`);
+});
+
 
 export default app;
