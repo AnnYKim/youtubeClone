@@ -1,2 +1,17 @@
-export const home = (req, res) => res.send("홈 화면!");
-export const search = (req, res) => res.send("검색 화면!");
+export const home = (req, res) => {
+  res.render("home", {
+    pageTitle: "Main"
+  });
+};
+
+export const search = (req, res) => {
+  const {
+    query: {
+      term: searchTerm
+    }
+  } = req;
+  res.render("search", {
+    pageTitle: "Search",
+    searchTerm
+  });
+};
