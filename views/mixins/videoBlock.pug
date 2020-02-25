@@ -1,0 +1,9 @@
+//- 이 mixin에 인자가 입력되면,그 객체의 이름을 video로 하겠다는 뜻!
+mixin videoBlock(video = {})
+  //- 그 객체의 title 프로퍼티를 가져와서 표시하겠다
+  .videoBlock
+    a(href=routes.videoDetail(video.id))
+      video(src=video.videoFile)
+      h2=video.title
+      p=video.description
+    
