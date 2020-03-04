@@ -21,12 +21,23 @@ export const home = async (req, res) => {
   }
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   const {
     query: {
       term: searchTerm
     }
   } = req;
+  let videos = [];
+  try {
+    videos = await Video.find({
+      title: {
+        $regex: searchTerm,
+        $options: "i"
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
   res.render("search", {
     pageTitle: "Search",
     searchTerm,
@@ -139,6 +150,7 @@ export const deleteVideo = async (req, res) => {
     await Video.findOneAndRemove({
       _id: id
     });
-  } catch (error) {}
-  res.redirect(routes.home);
+  } catch (error) {
+    res.redirect(routes.home);
+  }
 };

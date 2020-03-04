@@ -5,9 +5,12 @@ block content
   .search__header
     h3 '#{searchTerm}'로 검색한 결과입니다.
   .search__video
+    if videos.length === 0
+      h5 No Results
     each item in videos
       +videoBlock({
         title: item.title,
         description: item.description,
-        videoFile: item.videoFile
+        videoFile: item.videoFile,
+        id: item.id
       })
