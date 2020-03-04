@@ -18,3 +18,17 @@ header
       li
         a(href=routes.logout) Logout
   hr
+
+
+
+  req : {
+    query : {
+      term : "Nana"
+      hello: "itsme"
+    }
+  }
+
+  const me = req.query.term;
+  const you = req.qeury.hello;
+
+  const { query : {term, hello} } = req;

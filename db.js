@@ -1,3 +1,23 @@
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
+mongoose.connect(
+  process.env.MONGO_URL, { //어디에 데이터베이스가 있냐!
+    useNewUrlParser: true, //config 추가
+    useFindAndModify: false
+  }
+);
+
+const db = mongoose.connection;
+const handleOpen = () => console.log("🐳 DB에 연결됐어요!");
+const handleError = () => console.log("❌ 에러가 났어요...");
+db.once("open", handleOpen);
+db.on("error", handleError);
+
+
+
+
 // export const videos = [{
 //     id: 1887,
 //     title: 'A Study in Scarlet',
