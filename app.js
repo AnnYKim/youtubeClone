@@ -27,6 +27,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.set('view engine', 'pug');
+app.use("/uploads", express.static("uploads")) //영 좋지 않은 방식이라고 하는데.. 아직 이해가 안 됨ㅋㅋㅋㅋㅋ
 
 app.use(localsMiddleware);
 app.use(routes.home, globalRouter);

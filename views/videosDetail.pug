@@ -2,5 +2,11 @@ extends layouts/main
 include mixins/videoBlock
 
 block content
-  .videoDetail
-    p 비디오 디테일
+  .video__player
+    video(src=`/${video.fileUrl}` controls)
+    //- 서버에 있는 파일이라 앞에 /가 필요함!
+  .video__info
+    a(href=routes.editVideo(video.id)) 수정
+    h2=video.title
+    span=`조회수 ${video.views}`
+    p=video.description
