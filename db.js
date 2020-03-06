@@ -5,7 +5,8 @@ dotenv.config();
 mongoose.connect(
   process.env.MONGO_URL, { //어디에 데이터베이스가 있냐!
     useNewUrlParser: true, //config 추가
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology: true
   }
 );
 
