@@ -1,2 +1,20 @@
 body {
-  background-color: darkorange; }
+  background-color: steelblue; }
+
+.testor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-gap: 20px;
+  -webkit-transform: translateX(100px);
+     -moz-transform: translateX(100px);
+      -ms-transform: translateX(100px);
+       -o-transform: translateX(100px);
+          transform: translateX(100px); }
+
+.nana {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; }

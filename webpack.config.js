@@ -11,25 +11,30 @@ const config = {
   mode: MODE,
   module: {
     rules: [{
-      test: /\.(scss)$/,
-      use: ExtractCSS.extract([{
-          loader: "css-loader"
-        },
-        {
-          loader: "postcss-loader",
-          options: {
-            plugin() {
-              return [autoprefixer({
-                browsers: "cover 99.5%"
-              })];
+        test: /\.(scss)$/,
+        use: ExtractCSS.extract([{
+            loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: () => {
+                return [autoprefixer({
+                  Browserslist: 'cover 99.5%'
+                })]
+              }
             }
+          },
+          {
+            loader: "sass-loader"
           }
-        },
-        {
-          loader: "sass-loader"
-        }
-      ])
-    }]
+        ])
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader']
+      },
+    ]
   },
   output: {
     path: OUTPUT_DIR,
