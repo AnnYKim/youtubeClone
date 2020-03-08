@@ -1,4 +1,5 @@
 import routes from "../routes";
+import User from "../models/User";
 
 export const getJoin = (req, res) => {
   res.render("join", {
@@ -6,13 +7,11 @@ export const getJoin = (req, res) => {
   })
 };
 
-export const postJoin = (req, res) => {
+export const postJoin = async (req, res) => {
   console.log(req.body);
-  // const userName = req.body.userName;
-  // const { body: {} } = req;
   const {
     body: {
-      userName,
+      name,
       email,
       password,
       password2
@@ -22,9 +21,18 @@ export const postJoin = (req, res) => {
     console.log("또잉?");
     res.status(400)
   } else {
-    console.log("회원가입 성공!");
-    res.redirect(routes.home)
+    try {
+      const user = await User({
+        name,
+        email
+      });
+      await User.register(user, password);
+      console.log("회원가입 성공!");
+    } catch (error) {
+      console.log(error);
+    }
   }
+  res.redirect(routes.home)
 }
 
 export const getLogin = (req, res) => {
