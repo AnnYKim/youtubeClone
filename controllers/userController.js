@@ -1,4 +1,6 @@
+import passport from "passport";
 import routes from "../routes";
+import User from "../models/User";
 
 export const getJoin = (req, res) => {
   res.render("join", {
@@ -6,13 +8,11 @@ export const getJoin = (req, res) => {
   })
 };
 
-export const postJoin = (req, res) => {
+export const postJoin = async (req, res, next) => {
   console.log(req.body);
-  // const userName = req.body.userName;
-  // const { body: {} } = req;
   const {
     body: {
-      userName,
+      name,
       email,
       password,
       password2
@@ -22,8 +22,18 @@ export const postJoin = (req, res) => {
     console.log("또잉?");
     res.status(400)
   } else {
-    console.log("회원가입 성공!");
-    res.redirect(routes.home)
+    try {
+      const user = await User.create({
+        name,
+        email
+      })
+      await User.register(user, password);
+      console.log("회원가입 성공!");
+      next();
+    } catch (error) {
+      console.log(error)
+      res.redirect(routes.home)
+    }
   }
 }
 
@@ -33,10 +43,13 @@ export const getLogin = (req, res) => {
   })
 };
 
-export const postLogin = (req, res) => {
-  console.log("로그인 성공!");
-  res.redirect(routes.home);
-}
+export const postLogin = passport.authenticate("local", {
+  failureRedirect: routes.login,
+  successRedirect: routes.home,
+  // successFlash: "Welcome",
+  // failureFlash: "Can't log in. Check email and/or password"
+});
+
 
 export const editProfile = (req, res) => {
   res.render("editProfile", {
